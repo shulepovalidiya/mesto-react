@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import '../index.css';
 import Header from './Header';
 import Main from "./Main";
@@ -9,10 +10,10 @@ import ImagePopup from "./ImagePopup";
 
 function App() {
 
-    const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-    const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-    const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-    const [selectedCard, setSelectedCard] = React.useState({});
+    const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+    const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+    const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+    const [selectedCard, setSelectedCard] = useState({});
 
     const handleEditAvatarClick = () => {
         setIsEditAvatarPopupOpen(true);
@@ -54,7 +55,9 @@ function App() {
                 name="edit-profile"
                 title="Редактировать профиль"
                 isOpen={isEditProfilePopupOpen}
-                onClose={closeAllPopups}>
+                onClose={closeAllPopups}
+                buttonText="Сохранить"
+            >
                 <div className="popup__field-container">
                     <input type="text"
                            id="name-field"
@@ -83,7 +86,9 @@ function App() {
                 name="add-card"
                 title="Новое место"
                 isOpen={isAddPlacePopupOpen}
-                onClose={closeAllPopups}>
+                onClose={closeAllPopups}
+                buttonText="Создать"
+            >
                 <div className="popup__field-container">
                     <input
                         type="text"
@@ -113,13 +118,16 @@ function App() {
                 title="Вы уверены?"
                 isOpen={false}
                 onClose={closeAllPopups}
+                buttonText="Да"
             />
 
             <PopupWithForm
                 name="update-avatar"
                 title="Обновить аватар"
                 isOpen={isEditAvatarPopupOpen}
-                onClose={closeAllPopups}>
+                onClose={closeAllPopups}
+                buttonText="Сохранить"
+            >
                 <div className="popup__field-container">
                     <input
                         type="url"

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from 'react';
 import api from "../utils/Api";
 import editAvatarIcon from '../images/profile/profile__edit-icon.svg';
 import Card from "./Card";
@@ -7,12 +8,12 @@ import Card from "./Card";
 function Main(props) {
 
     //переменные стейта
-    const [userName, setUserName] = React.useState();
-    const [userDescription, setUserDescription ] = React.useState();
-    const [userAvatar, setUserAvatar] = React.useState();
-    const [cards, setCards] = React.useState([]);
+    const [userName, setUserName] = useState('');
+    const [userDescription, setUserDescription ] = useState('');
+    const [userAvatar, setUserAvatar] = useState('');
+    const [cards, setCards] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         Promise.all([api.getUserData(), api.getInitialCards()])
             .then(([userData, cardsArr]) => {
                 setUserName(userData.name)
