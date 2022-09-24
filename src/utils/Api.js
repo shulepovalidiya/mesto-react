@@ -26,7 +26,7 @@ class Api {
         }).then(res => this._getResponseData(res))
     }
 
-    setUserData(inputValues) {
+    setUserData(username, bio) {
         return fetch(`${this._url}users/me`, {
             method: 'PATCH',
             headers: {
@@ -34,13 +34,13 @@ class Api {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: inputValues.username,
-                about: inputValues.bio,
+                name: username,
+                about: bio,
             })
         }).then(res => this._getResponseData(res))
     }
 
-    createNewCard(inputValues) {
+    createNewCard(name, link) {
         return fetch(`${this._url}cards`, {
             method: 'POST',
             headers: {
@@ -48,8 +48,8 @@ class Api {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: inputValues.name,
-                link: inputValues.link,
+                name,
+                link,
             })
         }).then(res => this._getResponseData(res))
     }
@@ -64,24 +64,24 @@ class Api {
         }).then(res => this._getResponseData(res))
     }
 
-    putLike(cardID) {
-        return fetch(`${this._url}cards/likes/${cardID}`, {
-            method: 'PUT',
-            headers: {
-                authorization: this._authorization,
-                'Content-Type': 'application/json',
-            }
-        }).then(res => this._getResponseData(res))
-    }
-
-    removeLike(cardID) {
-        return fetch(`${this._url}cards/likes/${cardID}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: this._authorization,
-                'Content-Type': 'application/json',
-            }
-        }).then(res => this._getResponseData(res))
+    changeLikeCardStatus(cardID, isLiked) {
+        if (isLiked) {
+            return fetch(`${this._url}cards/likes/${cardID}`, {
+                method: 'PUT',
+                headers: {
+                    authorization: this._authorization,
+                    'Content-Type': 'application/json',
+                }
+            }).then(res => this._getResponseData(res))
+        } else {
+            return fetch(`${this._url}cards/likes/${cardID}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: this._authorization,
+                    'Content-Type': 'application/json',
+                }
+            }).then(res => this._getResponseData(res))
+        }
     }
 
     updateAvatar(link) {
