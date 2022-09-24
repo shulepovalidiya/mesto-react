@@ -30,7 +30,7 @@ function App() {
             .catch(err => {
                 console.log(`Произошла ошибка: ${err}`);
             })
-    })
+    }, [])
 
     const handleEditAvatarClick = () => {
         setIsEditAvatarPopupOpen(true);
@@ -88,6 +88,7 @@ function App() {
             .then((res) => {
                 setCards((state) => state.filter((c) => c._id !== card._id))
             })
+            .catch(err => console.log(err))
     }
 
     function handleAddPlaceSubmit(name, link) {

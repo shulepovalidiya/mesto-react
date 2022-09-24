@@ -17,5 +17,5 @@
 
 Затем эти файлы можно использовать для деплоя веб-приложения в интернете.
 
-
+Посмотреть проект можно также на GitHub Pages: [https://shulepovalidiya.github.io/mesto-react/](https://shulepovalidiya.github.io/mesto-react/)
 
